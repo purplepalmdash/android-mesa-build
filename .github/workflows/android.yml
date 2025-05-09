@@ -39,6 +39,7 @@ jobs:
       - name: Build
         run: |
           envsubst <android-drm-${{matrix.arch}} >build-crossfile-drm
+          cat build-crossfile-drm
           git clone https://gitlab.freedesktop.org/mesa/drm.git
           cd drm
           meson setup "build-android" \
@@ -57,6 +58,11 @@ jobs:
           ninja -C "build-android" install
           cd ..
           envsubst <android-${{matrix.arch}} >build-crossfile
+          cat build-crossfile
+          uname -a
+          cat /etc/issue
+          free -m
+          lscpu
           git clone --branch mesa-25.0.2 https://gitlab.freedesktop.org/mesa/mesa
           git clone --branch 25.0.2 https://github.com/Vera-Firefly/mesa-build-fix
           cp -rf mesa-build-fix/* mesa/
